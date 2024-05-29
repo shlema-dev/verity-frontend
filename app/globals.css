@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@radix-ui/colors/violet";
+@import "@radix-ui/colors/violet-dark";
+@import "@radix-ui/colors/mauve";
+@import "@radix-ui/colors/mauve-dark";
+@import "@radix-ui/colors/grass";
+@import "@radix-ui/colors/grass-dark";
+@import "@radix-ui/colors/red";
+@import "@radix-ui/colors/red-dark";
+@import "@radix-ui/colors/amber";
+@import "@radix-ui/colors/amber-dark";
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
