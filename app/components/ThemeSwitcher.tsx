@@ -10,14 +10,19 @@ export default function ThemeSwitcher() {
 
   useEffect(() => setMounted(true), []);
 
+  if (!mounted) {
+    return (
+      <div className="w-[34px] h-[34px] flex justify-center items-center"></div>
+    );
+  }
+
   if (resolvedTheme === "dark") {
     return (
       <button
-        disabled={!mounted}
         onClick={() => setTheme("light")}
-        className="p-2 hover:bg-gray-4 rounded"
+        className="w-[34px] h-[34px] flex justify-center items-center"
       >
-        <MoonIcon color="#EEEEF0" />
+        <MoonIcon color="#EEEEF0" width={18} height={18} />
       </button>
     );
   }
@@ -25,11 +30,10 @@ export default function ThemeSwitcher() {
   if (resolvedTheme === "light") {
     return (
       <button
-        disabled={!mounted}
         onClick={() => setTheme("dark")}
-        className="p-2 hover:bg-gray-4 rounded"
+        className="w-[34px] h-[34px] flex justify-center items-center"
       >
-        <SunIcon color="#121113" />
+        <SunIcon color="#121113" width={18} height={18} />
       </button>
     );
   }
