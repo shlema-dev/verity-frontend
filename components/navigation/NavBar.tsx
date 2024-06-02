@@ -9,6 +9,7 @@ import ThemeSwitcher from "../ThemeSwitcher";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, color, easeInOut, motion } from "framer-motion";
+import DesktopNav from "./DesktopNav";
 
 const NavBar: React.FC = () => {
   const path = usePathname();
@@ -16,7 +17,7 @@ const NavBar: React.FC = () => {
 
   return (
     <header className="w-full bg-gray-2 xl:bg-gray-1">
-      <nav className="w-full lg:max-w-7xl mx-auto px-6 lg:px-12 py-6 md:py-8 flex justify-between items-center">
+      <nav className="relative w-full lg:max-w-7xl mx-auto px-6 lg:px-12 py-6 md:py-8 flex justify-between items-center">
         <div className="flex gap-8">
           {/* Logo */}
           <div className="w-[100px]">
@@ -45,59 +46,7 @@ const NavBar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop nav */}
-          <div className="hidden xl:block">
-            <ul className="ml-6 flex gap-6 justify-center pt-1">
-              <li>
-                <Link
-                  href="/"
-                  className={`text-gray-12 pb-2 ${
-                    path === "/"
-                      ? "border-b-2 border-primary-9"
-                      : "hover:border-b-2 border-gray-12"
-                  }`}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/mission"
-                  className={`text-gray-12 pb-2 ${
-                    path === "/mission"
-                      ? "border-b-2 border-primary-9"
-                      : "hover:border-b-2 border-gray-12"
-                  }`}
-                >
-                  Mission
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/electionbrief"
-                  className={`text-gray-12 pb-2 ${
-                    path === "/electionbrief"
-                      ? "border-b-2 border-primary-9"
-                      : "hover:border-b-2 border-gray-12"
-                  }`}
-                >
-                  Election Brief
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className={`text-gray-12 pb-2 ${
-                    path === "/contact"
-                      ? "border-b-2 border-primary-9"
-                      : "hover:border-b-2 border-gray-12"
-                  }`}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <DesktopNav />
         </div>
 
         <div className="flex gap-4">
@@ -138,10 +87,11 @@ const NavBar: React.FC = () => {
           <motion.div
             initial={{ height: "0vh", opacity: 0 }}
             animate={{ height: "85vh", opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
             exit={{ height: "0vh", opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute z-10 w-full"
           >
-            <div className="w-full h-[85vh] flex flex-col justify-start gap-2 bg-gray-2 ">
+            <div className="w-full h-[90vh] flex flex-col justify-start gap-2 bg-gray-2 ">
               <ul className="flex flex-col justify-start gap-2 pb-6 mx-6 border-t border-gray-6">
                 <motion.li
                   initial={{
@@ -149,6 +99,7 @@ const NavBar: React.FC = () => {
                     opacity: 0,
                   }}
                   animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-50%", opacity: 0 }}
                   transition={{
                     delay: 0.2,
                     ease: "easeInOut",
@@ -173,6 +124,7 @@ const NavBar: React.FC = () => {
                     opacity: 0,
                   }}
                   animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-50%", opacity: 0 }}
                   transition={{
                     delay: 0.25,
                     ease: "easeInOut",
@@ -197,6 +149,7 @@ const NavBar: React.FC = () => {
                     opacity: 0,
                   }}
                   animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-50%", opacity: 0 }}
                   transition={{
                     delay: 0.3,
                     ease: "easeInOut",
@@ -221,6 +174,7 @@ const NavBar: React.FC = () => {
                     opacity: 0,
                   }}
                   animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-50%", opacity: 0 }}
                   transition={{
                     delay: 0.35,
                     ease: "easeInOut",

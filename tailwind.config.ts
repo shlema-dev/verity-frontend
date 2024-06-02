@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: getColorScale("violet"),
-        gray: getColorScale("mauve"),
+        primary: getColorScale("brown"),
+        gray: getColorScale("sand"),
         success: getColorScale("grass"),
         warning: getColorScale("amber"),
         error: getColorScale("red"),

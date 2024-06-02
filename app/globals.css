@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@radix-ui/colors/violet";
-@import "@radix-ui/colors/violet-dark";
-@import "@radix-ui/colors/mauve";
-@import "@radix-ui/colors/mauve-dark";
+@import "@radix-ui/colors/brown";
+@import "@radix-ui/colors/brown-dark";
+@import "@radix-ui/colors/sand";
+@import "@radix-ui/colors/sand-dark";
 @import "@radix-ui/colors/grass";
 @import "@radix-ui/colors/grass-dark";
 @import "@radix-ui/colors/red";
