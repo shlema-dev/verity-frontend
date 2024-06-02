@@ -103,6 +103,7 @@ const NavBar: React.FC = () => {
         <div className="flex gap-4">
           <ThemeSwitcher />
           <button
+            data-testid="nav-button"
             aria-label="Nav menu button"
             type="button"
             onClick={() => {
@@ -163,7 +164,7 @@ const NavBar: React.FC = () => {
                       path === "/" ? "border-b border-gray-12" : ""
                     }`}
                   >
-                    HOME
+                    Home
                   </Link>
                 </motion.li>
                 <motion.li
@@ -187,7 +188,7 @@ const NavBar: React.FC = () => {
                       path === "/mission" ? "border-b border-gray-12" : ""
                     }`}
                   >
-                    MISSION
+                    Mission
                   </Link>
                 </motion.li>
                 <motion.li
@@ -211,7 +212,7 @@ const NavBar: React.FC = () => {
                       path === "/electionbrief" ? "border-b border-gray-12" : ""
                     }`}
                   >
-                    ELECTION BRIEF
+                    Election Brief
                   </Link>
                 </motion.li>
                 <motion.li
@@ -235,7 +236,7 @@ const NavBar: React.FC = () => {
                       path === "/contact" ? "border-b border-gray-12" : ""
                     }`}
                   >
-                    CONTACT
+                    Contact
                   </Link>
                 </motion.li>
               </ul>
