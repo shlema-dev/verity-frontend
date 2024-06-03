@@ -92,7 +92,7 @@ const NavBar: React.FC = () => {
             className="absolute z-10 w-full"
           >
             <div className="w-full h-[90vh] flex flex-col justify-start gap-2 bg-gray-2 ">
-              <ul className="flex flex-col justify-start gap-2 pb-6 mx-6 border-t border-gray-6">
+              <ul className="flex flex-col justify-start gap-2 pb-6 mx-6 border-t border-primary-6">
                 <motion.li
                   initial={{
                     y: "-50%",
@@ -112,7 +112,9 @@ const NavBar: React.FC = () => {
                       setIsOpen(false);
                     }}
                     className={`pb-2 text-gray-12 text-lg ${
-                      path === "/" ? "border-b border-gray-12" : ""
+                      path === "/"
+                        ? "border-b border-primary-11 text-primary-11"
+                        : ""
                     }`}
                   >
                     Home
@@ -137,7 +139,9 @@ const NavBar: React.FC = () => {
                       setIsOpen(false);
                     }}
                     className={`pb-2 text-gray-12 text-lg ${
-                      path === "/mission" ? "border-b border-gray-12" : ""
+                      path === "/mission"
+                        ? "border-b border-primary-11 text-primary-11"
+                        : ""
                     }`}
                   >
                     Mission
@@ -162,7 +166,9 @@ const NavBar: React.FC = () => {
                       setIsOpen(false);
                     }}
                     className={`pb-2 text-gray-12 text-lg ${
-                      path === "/electionbrief" ? "border-b border-gray-12" : ""
+                      path === "/electionbrief"
+                        ? "border-b border-primary-11 text-primary-11"
+                        : ""
                     }`}
                   >
                     Election Brief
@@ -187,7 +193,9 @@ const NavBar: React.FC = () => {
                       setIsOpen(false);
                     }}
                     className={`pb-2 text-gray-12 text-lg ${
-                      path === "/contact" ? "border-b border-gray-12" : ""
+                      path === "/contact"
+                        ? "border-b border-primary-11 text-primary-11"
+                        : ""
                     }`}
                   >
                     Contact

@@ -20,6 +20,7 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
+          poster="/flag-frame.png"
         >
           <source src="/flag.mp4" type="video/mp4" />
         </video>
