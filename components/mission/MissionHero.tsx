@@ -3,7 +3,11 @@ import CongressPhoto from "@/public/congress-hero.png";
 
 const MissionHero: React.FC = () => {
   return (
-    <section className="mt-12 flex flex-col gap-6  lg:gap-12 justify-center lg:items-center">
+    <section className="flex flex-col gap-6 lg:gap-12 justify-center lg:items-center">
+      <h1 className="text-center mt-8 text-5xl text-gray-12 font-semibold">
+        Our Mission
+      </h1>
+
       <div className="relative w-full h-64 lg:h-[45vh] rounded-xl">
         <Image
           src={CongressPhoto}
@@ -14,20 +18,6 @@ const MissionHero: React.FC = () => {
           objectFit="cover"
           className="rounded-xl"
         />
-      </div>
-      <div className="lg:mx-32">
-        <h2
-          className="mb-8 text-center text-4xl text-gray-12
-         font-semibold"
-        >
-          Real News for <span className="text-primary-9">Real People</span>
-        </h2>
-        <p className="text-center text-xl text-gray-11">
-          In today’s world, finding news that's unbiased has become impossible.
-          Between the lines of every story, there seems to be a hidden agenda.
-          We're here to change that. Our platform is built on the simple idea
-          that news should inform, not influence.
-        </p>
       </div>
     </section>
   );
