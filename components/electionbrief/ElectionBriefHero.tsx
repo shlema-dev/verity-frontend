@@ -1,6 +1,6 @@
 const ElectionBriefHero: React.FC = () => {
   return (
-    <section className="pb-12 border-b border-primary-8">
+    <section className="pb-12 border-b border-primary-6">
       <h1 className="text-center mt-8 text-5xl text-gray-12 font-semibold">
         Election Brief <span className="text-primary-9">2024</span>
       </h1>
