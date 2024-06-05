@@ -1,9 +1,14 @@
 const ElectionDates: React.FC = () => {
   return (
-    <div className="mt-8 pb-12 border-b border-primary-6">
+    <section className="mt-8 pb-12 border-b border-primary-6">
       <h2 className="mt-8 text-3xl font-medium text-gray-12 text-center">
         Important Election Dates
       </h2>
+      <p className="mt-8 text-xl text-center text-gray-11">
+        Mark your calendars! The election season is full of critical dates, and
+        we&apos;ve compiled the ones you can&apos;t afford to miss. Here&apos;s
+        when the pivotal moments in the 2024 election will occur:
+      </p>
       <ul className="mt-8">
         <li className="mb-6 text-center text-gray-12">
           <p>
@@ -11,6 +16,7 @@ const ElectionDates: React.FC = () => {
             hold their <b>presidential primary contests.</b>
           </p>
         </li>
+
         <li className="mb-6 text-center text-gray-12">
           <p>
             <b className="text-primary-11">September 16, 2024: </b> The first{" "}
@@ -18,6 +24,7 @@ const ElectionDates: React.FC = () => {
             Marcos, TX.
           </p>
         </li>
+
         <li className="mb-6 text-center text-gray-12">
           <p>
             <b className="text-primary-11">October 1, 2024: </b> Tune in for the
@@ -25,6 +32,7 @@ const ElectionDates: React.FC = () => {
             VA.
           </p>
         </li>
+
         <li className="mb-6 text-center text-gray-12">
           <p>
             <b className="text-primary-11">October 9, 2024: </b> The third{" "}
@@ -32,12 +40,14 @@ const ElectionDates: React.FC = () => {
             Lake City, UT.
           </p>
         </li>
+
         <li className="mb-6 text-center text-gray-12">
           <p>
             <b className="text-primary-11">November 5, 2024: </b>{" "}
             <b>General Election Day</b> across the United States.
           </p>
         </li>
+
         <li className="mb-6 text-center text-gray-12">
           <p>
             <b className="text-primary-11">January 6, 2025: </b> the{" "}
@@ -46,7 +56,7 @@ const ElectionDates: React.FC = () => {
           </p>
         </li>
       </ul>
-    </div>
+    </section>
   );
 };
 

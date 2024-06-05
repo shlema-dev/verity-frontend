@@ -61,7 +61,7 @@ const Candidates: React.FC = () => {
   ];
 
   return (
-    <div>
+    <section>
       <h2 className="mt-12 text-3xl font-medium text-gray-12 text-center">
         Meet the Candidates
       </h2>
@@ -97,7 +97,7 @@ const Candidates: React.FC = () => {
       />
 
       <div className="mt-24 border-b border-primary-6" />
-    </div>
+    </section>
   );
 };
 
