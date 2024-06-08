@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
         </p>
       </div>
 
-      <div className="mt-8 rounded-2xl dark:shadow-[rgba(77,_60,_47,_0.95)_0px_9px_20px]">
+      <div className="mt-8  lg:p-1 lg:rounded-2xl xl:rounded-3xl lg:border-8 lg:border-primary-8 dark:shadow-[rgba(77,_60,_47,_0.95)_0px_9px_20px]">
         <video
           className="w-full h-full object-cover rounded-xl"
           autoPlay

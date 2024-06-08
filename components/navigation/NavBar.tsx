@@ -5,7 +5,7 @@ import Image from "next/image";
 import LightVerityLogo from "@/public/LightVerityLogo.png";
 import DarkVerityLogo from "@/public/DarkVerityLogo.png";
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import ThemeSwitcher from "../ThemeSwitcher";
+import ThemeSwitcher from "../ui/ThemeSwitcher";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, color, easeInOut, motion } from "framer-motion";
