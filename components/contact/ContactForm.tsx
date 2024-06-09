@@ -1,14 +1,7 @@
 "use client";
 
 import { sendEmailAction } from "@/app/contact/actions";
-import {
-  Button,
-  Description,
-  Field,
-  Input,
-  Label,
-  Textarea,
-} from "@headlessui/react";
+import { Description, Field, Input, Label, Textarea } from "@headlessui/react";
 import { useFormState, useFormStatus } from "react-dom";
 import FormSubmit from "./FormSubmit";
 import { CheckIcon } from "@radix-ui/react-icons";
@@ -33,11 +26,12 @@ const ContactForm: React.FC = () => {
           First Name
         </Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("firstname") ? "*" : ""}
+          {state.errors.includes("firstname") ? "* First name required" : ""}
         </Description>
         <Input
           type="text"
           name="firstname"
+          aria-label="firstname"
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
             focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
         />
@@ -47,11 +41,12 @@ const ContactForm: React.FC = () => {
           Last Name
         </Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("lastname") ? "*" : ""}
+          {state.errors.includes("lastname") ? "* Last name required" : ""}
         </Description>
         <Input
           type="text"
           name="lastname"
+          aria-label="lastname"
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
             focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
         />
@@ -61,11 +56,12 @@ const ContactForm: React.FC = () => {
           Email Address
         </Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("email") ? "*" : ""}
+          {state.errors.includes("email") ? "* Email required" : ""}
         </Description>
         <Input
           type="text"
           name="email"
+          aria-label="email"
           autoComplete="email"
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
             focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
@@ -74,10 +70,11 @@ const ContactForm: React.FC = () => {
       <Field disabled={status.pending}>
         <Label className="text-sm/6 font-medium text-primary-12">Message</Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("message") ? "*" : ""}
+          {state.errors.includes("message") ? "* Message required" : ""}
         </Description>
         <Textarea
           name="message"
+          aria-label="message"
           rows={5}
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
             focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
@@ -85,7 +82,7 @@ const ContactForm: React.FC = () => {
       </Field>
 
       {state.emailSent ? (
-        <div className="lg:mt-2flex flex-col lg:flex-row justify-center items-center gap-2 text-center">
+        <div className="lg:mt-2 flex flex-col lg:flex-row justify-center items-center gap-2 text-center">
           <div className="rounded-full p-1 bg-primary-9">
             <CheckIcon color="white" />
           </div>

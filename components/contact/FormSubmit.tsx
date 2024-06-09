@@ -18,6 +18,7 @@ const FormSubmit: React.FC = () => {
   return (
     <Button
       type="submit"
+      data-testid="submit"
       className={`rounded-lg bg-primary-10 mt-4 py-2 px-4 text-primary-1 dark:text-primary-12 data-[hover]:bg-primary-9 `}
     >
       Submit
