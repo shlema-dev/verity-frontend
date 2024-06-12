@@ -3,8 +3,8 @@
 import { sendEmailAction } from "@/app/contact/actions";
 import { Description, Field, Input, Label, Textarea } from "@headlessui/react";
 import { useFormState, useFormStatus } from "react-dom";
-import FormSubmit from "./FormSubmit";
 import { CheckIcon } from "@radix-ui/react-icons";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 const ContactForm: React.FC = () => {
   const status = useFormStatus();
@@ -89,7 +89,7 @@ const ContactForm: React.FC = () => {
           <p className="text-primary-9">Email sent!</p>
         </div>
       ) : (
-        <FormSubmit />
+        <FormSubmit title="Submit" />
       )}
     </form>
   );
