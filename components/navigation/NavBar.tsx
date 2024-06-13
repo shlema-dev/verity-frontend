@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, color, easeInOut, motion } from "framer-motion";
 import DesktopNav from "./DesktopNav";
+import SignoutButton from "../auth/SignoutButton";
 
 const NavBar: React.FC = () => {
   const path = usePathname();
@@ -202,6 +203,21 @@ const NavBar: React.FC = () => {
                   </Link>
                 </motion.li>
               </ul>
+              <motion.div
+                initial={{
+                  y: "-50%",
+                  opacity: 0,
+                }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-50%", opacity: 0 }}
+                transition={{
+                  delay: 0.2,
+                  ease: "easeInOut",
+                }}
+                className="mx-6 pt-8 border-t border-primary-6 flex justify-center"
+              >
+                <SignoutButton onClose={() => setIsOpen(false)} />
+              </motion.div>
             </div>
           </motion.div>
         )}

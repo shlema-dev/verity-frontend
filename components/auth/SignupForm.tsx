@@ -22,6 +22,11 @@ const SigninForm: React.FC = () => {
           Sorry, something went wrong. Please try again later.
         </p>
       )}
+      {state.errors.includes("account already exists") && (
+        <p className="text-error-11">
+          An account with that email address already exists.
+        </p>
+      )}
       <Field disabled={status.pending}>
         <Label className="text-sm/6 font-medium text-primary-12">
           Email Address
