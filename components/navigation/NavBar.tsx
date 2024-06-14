@@ -235,6 +235,27 @@ const NavBar: React.FC = () => {
                   ease: "easeInOut",
                 }}
                 className={`${
+                  session.status === "unauthenticated"
+                    ? "mx-6 pt-8 border-t border-primary-6 flex justify-center"
+                    : "hidden"
+                }`}
+              >
+                <Link href={"/signin"} onClick={() => setIsOpen(false)}>
+                  Sign In
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{
+                  y: "-50%",
+                  opacity: 0,
+                }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-50%", opacity: 0 }}
+                transition={{
+                  delay: 0.2,
+                  ease: "easeInOut",
+                }}
+                className={`${
                   session.status === "authenticated"
                     ? "mx-6 pt-8 border-t border-primary-6 flex justify-center"
                     : "hidden"
