@@ -14,6 +14,7 @@ type FormState = {
 export async function signupAction(prevState: FormState, formData: FormData) {
   const emailAddress = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const confirmPassword = formData.get("confirmPassword") as string;
   let errors: string[] = [];
   let registrationError = false;
 
@@ -41,6 +42,14 @@ export async function signupAction(prevState: FormState, formData: FormData) {
     !validatePassword(password)
   ) {
     errors.push("password");
+  }
+
+  if (
+    !confirmPassword ||
+    confirmPassword.trim().length === 0 ||
+    password !== confirmPassword
+  ) {
+    errors.push("password mismatch");
   }
 
   if (errors.length > 0) {

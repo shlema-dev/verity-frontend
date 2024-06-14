@@ -53,9 +53,26 @@ const SigninForm: React.FC = () => {
             : ""}
         </Description>
         <Input
-          type="text"
+          type="password"
           name="password"
           aria-label="password"
+          className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
+            focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
+        />
+      </Field>
+      <Field disabled={status.pending}>
+        <Label className="text-sm/6 font-medium text-primary-12">
+          Confirm Password
+        </Label>
+        <Description className="text-sm text-error-11">
+          {state.errors.includes("password mismatch")
+            ? "Passwords must match"
+            : ""}
+        </Description>
+        <Input
+          type="password"
+          name="confirmPassword"
+          aria-label="confirmPassword"
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12
             focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-8`}
         />
