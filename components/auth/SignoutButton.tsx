@@ -7,7 +7,7 @@ const SignoutButton: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         signOut();
         onClose();
       }}
-      className="text-gray-12"
+      className="text-gray-12 xl:hover:text-primary-11"
     >
       Sign Out
     </button>

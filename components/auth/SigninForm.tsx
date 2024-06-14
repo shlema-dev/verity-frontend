@@ -5,24 +5,32 @@ import { useFormState, useFormStatus } from "react-dom";
 import FormSubmit from "@/components/ui/FormSubmit";
 import Link from "next/link";
 import { signinAction } from "@/app/(auth)/signin/actions";
+import { useEffect } from "react";
 
 const SigninForm: React.FC = () => {
   const status = useFormStatus();
   const [state, formAction] = useFormState(signinAction, {
     errors: [],
+    success: false,
   });
+
+  useEffect(() => {
+    if (state?.success) {
+      window.location.replace("/");
+    }
+  }, [state?.success]);
 
   return (
     <form
       className="w-full max-w-2xl mt-12 p-4 lg:p-8 flex flex-col gap-4 border border-primary-8 bg-gradient-to-b from-primary-2 to-primary-1 rounded-xl self-center"
       action={formAction}
     >
-      {state.errors.includes("invalid credentials") && (
+      {state?.errors.includes("invalid credentials") && (
         <p className="text-error-11">
           Invalid credentials. Make sure email and password are correct
         </p>
       )}
-      {state.errors.includes("server error") && (
+      {state?.errors.includes("server error") && (
         <p className="text-error-11">
           Sorry, something went wrong. Please try again later.
         </p>
@@ -32,7 +40,7 @@ const SigninForm: React.FC = () => {
           Email Address
         </Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("email") ? "* Email required" : ""}
+          {state?.errors.includes("email") ? "* Email required" : ""}
         </Description>
         <Input
           type="text"
@@ -48,10 +56,10 @@ const SigninForm: React.FC = () => {
           Password
         </Label>
         <Description className="text-sm text-error-11">
-          {state.errors.includes("password") ? "* Password required" : ""}
+          {state?.errors.includes("password") ? "* Password required" : ""}
         </Description>
         <Input
-          type="text"
+          type="password"
           name="password"
           aria-label="password"
           className={`mt-3 block w-full rounded-lg border-none bg-primary-3 outline outline-2 -outline-offset-2 outline-primary-6 py-1.5 px-3 text-sm/6 text-primary-12

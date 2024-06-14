@@ -4,12 +4,17 @@ import { AuthError } from "next-auth";
 import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { FirebaseError } from "firebase/app";
 
 type FormState = {
   errors: string[];
+  success: boolean;
 };
 
-export async function signinAction(prevState: FormState, formData: FormData) {
+export async function signinAction(
+  state: FormState | undefined,
+  formData: FormData
+): Promise<FormState | undefined> {
   const emailAddress = formData.get("email") as string;
   const password = formData.get("password") as string;
   let errors: string[] = [];
@@ -32,7 +37,7 @@ export async function signinAction(prevState: FormState, formData: FormData) {
   }
 
   if (errors.length > 0) {
-    return { errors: errors };
+    return { errors: errors, success: false };
   }
 
   try {
@@ -44,28 +49,29 @@ export async function signinAction(prevState: FormState, formData: FormData) {
     });
     console.log("Successfully signed in!");
   } catch (error) {
-    if (error instanceof AuthError) {
+    console.log("An error was received");
+    if (error instanceof FirebaseError) {
+      console.log("error received: invalid credentials");
+      errors.push("invalid credentials");
+    } else if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
           console.log(error);
           errors.push("invalid credentials");
-          return { errors: errors };
+          break;
         default:
           console.log(error);
           errors.push("server error");
-          return { errors: errors };
+          break;
       }
+    } else {
+      console.log(error);
+      errors.push("server error");
     }
-    // Must be used for redirect as next uses error for redirect
-    if (isRedirectError(error)) {
-      console.error(error);
-      throw error;
-    }
-
-    console.log(error);
-    errors.push("server error");
-    return { errors: errors };
+    return { errors: errors, success: false };
   } finally {
-    redirect("/");
+    if (errors.length === 0) {
+      return { errors, success: true };
+    }
   }
 }
