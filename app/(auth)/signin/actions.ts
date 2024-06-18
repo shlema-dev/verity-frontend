@@ -48,23 +48,38 @@ export async function signinAction(
       redirect: false,
     });
     console.log("Successfully signed in!");
-  } catch (error) {
+  } catch (error: any) {
+    // Use 'any' to capture all types of errors
     console.log("An error was received");
-    if (error instanceof FirebaseError) {
-      console.log("error received: invalid credentials");
-      errors.push("invalid credentials");
-    } else if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          console.log(error);
-          errors.push("invalid credentials");
-          break;
-        default:
-          console.log(error);
-          errors.push("server error");
-          break;
+
+    // Handle CallbackRouteError and check its cause
+    if (error.type === "CallbackRouteError" && error.cause?.err) {
+      const causeError = error.cause.err;
+      if (causeError.code === "auth/invalid-credential") {
+        console.log("Firebase error: invalid credential");
+        errors.push("invalid credentials");
+      } else {
+        console.log(causeError);
+        errors.push("server error");
       }
-    } else {
+    }
+    // Handle FirebaseError directly
+    else if (error.code === "auth/invalid-credential") {
+      console.log("Firebase error: invalid credential");
+      errors.push("invalid credentials");
+    }
+    // Handle AuthError with specific error type
+    else if (error.type === "CredentialsSignin") {
+      console.log("Auth.js error: invalid credentials");
+      errors.push("invalid credentials");
+    }
+    // Handle generic AuthError with unknown type
+    else if (error.name === "AuthError") {
+      console.log("Auth.js error: server error");
+      errors.push("server error");
+    }
+    // Handle all other errors as server errors
+    else {
       console.log(error);
       errors.push("server error");
     }

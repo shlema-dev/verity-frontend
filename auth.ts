@@ -26,7 +26,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               return null;
             }
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(
+              "An error occured in the authorize function auth.js..."
+            );
+            throw error;
+          });
       },
     }),
   ],
