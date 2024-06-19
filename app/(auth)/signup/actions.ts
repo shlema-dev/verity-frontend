@@ -5,7 +5,6 @@ import { signIn } from "@/auth";
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import { isRedirectError } from "next/dist/client/components/redirect";
-import { FirebaseError } from "firebase/app";
 
 type FormState = {
   errors: string[];
@@ -61,15 +60,13 @@ export async function signupAction(prevState: FormState, formData: FormData) {
     await registerUser({ email: emailAddress, password });
   } catch (error: any) {
     console.log("An error was recieved");
-    if (
-      error instanceof FirebaseError &&
-      error.code === "auth/email-already-in-use"
-    ) {
-      console.log(
-        "error recieved from registeruser that email is in use already.."
-      );
-      errors.push("account already exists");
-      registrationError = true;
+    if (error.type === "CallbackRouteError" && error.cause?.err) {
+      const causeError = error.cause.err;
+      if (causeError.code === "auth/email-already-in-use") {
+        console.log("Firebase error: invalid credential");
+        errors.push("account already exists");
+        registrationError = true;
+      }
     }
   }
 
@@ -88,15 +85,18 @@ export async function signupAction(prevState: FormState, formData: FormData) {
     console.log("Successfully signed in!");
   } catch (error: any) {
     console.log("An error was recieved");
-    if (
-      error instanceof FirebaseError &&
-      error.code === "auth/email-already-in-use"
-    ) {
-      console.log(
-        "error recieved from registeruser that email is in use already.."
-      );
-      errors.push("account already exists");
-      return { errors: errors };
+    // Handle CallbackRouteError and check its cause
+    if (error.type === "CallbackRouteError" && error.cause?.err) {
+      const causeError = error.cause.err;
+      if (causeError.code === "auth/email-already-in-use") {
+        console.log("Firebase error: invalid credential");
+        errors.push("account already exists");
+        return { errors: errors };
+      } else {
+        console.log(causeError);
+        errors.push("server error");
+        return { errors: errors };
+      }
     }
 
     if (error instanceof AuthError) {

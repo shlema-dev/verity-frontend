@@ -26,7 +26,9 @@ export async function middleware(request: NextRequest) {
   if (
     !unprotectedRoutes.includes(pathname) &&
     !session?.user &&
-    pathname !== "/signin"
+    pathname !== "/signin" &&
+    pathname !== "/forgotpassword" &&
+    pathname !== "/signup"
   ) {
     const url = new URL("/signin", request.url);
     if (isDynamicPathname(pathname)) {

@@ -52,9 +52,17 @@ const SigninForm: React.FC = () => {
         />
       </Field>
       <Field disabled={status.pending}>
-        <Label className="text-sm/6 font-medium text-primary-12">
-          Password
-        </Label>
+        <div className="flex gap-4">
+          <Label className="text-sm/6 font-medium text-primary-12">
+            Password
+          </Label>
+          <Link
+            href={"/forgotpassword"}
+            className="text-xs self-center text-primary-11 hover:text-primary-12"
+          >
+            Forgot password?
+          </Link>
+        </div>
         <Description className="text-sm text-error-11">
           {state?.errors.includes("password") ? "* Password required" : ""}
         </Description>

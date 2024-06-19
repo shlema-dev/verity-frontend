@@ -1,10 +1,6 @@
 "use server";
 
-import { AuthError } from "next-auth";
 import { signIn } from "@/auth";
-import { redirect } from "next/navigation";
-import { isRedirectError } from "next/dist/client/components/redirect";
-import { FirebaseError } from "firebase/app";
 
 type FormState = {
   errors: string[];
