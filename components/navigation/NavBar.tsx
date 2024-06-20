@@ -10,10 +10,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, color, easeInOut, motion } from "framer-motion";
 import DesktopNav from "./DesktopNav";
+import SignoutButton from "../auth/SignoutButton";
+import { useSession } from "next-auth/react";
 
 const NavBar: React.FC = () => {
   const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const session = useSession();
 
   return (
     <header className="w-full bg-gray-2 xl:bg-gray-1">
@@ -50,6 +53,24 @@ const NavBar: React.FC = () => {
         </div>
 
         <div className="flex gap-4">
+          <div
+            className={`${
+              session.status === "unauthenticated"
+                ? "text-sm self-center hidden xl:block xl:hover:text-primary-11"
+                : "hidden"
+            }`}
+          >
+            <Link href="/signin">Sign In</Link>
+          </div>
+          <div
+            className={`${
+              session.status === "authenticated"
+                ? "text-sm self-center hidden xl:block"
+                : "hidden"
+            }`}
+          >
+            <SignoutButton onClose={() => {}} />
+          </div>
           <ThemeSwitcher />
           <button
             data-testid="nav-button"
@@ -202,6 +223,46 @@ const NavBar: React.FC = () => {
                   </Link>
                 </motion.li>
               </ul>
+              <motion.div
+                initial={{
+                  y: "-50%",
+                  opacity: 0,
+                }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-50%", opacity: 0 }}
+                transition={{
+                  delay: 0.2,
+                  ease: "easeInOut",
+                }}
+                className={`${
+                  session.status === "unauthenticated"
+                    ? "mx-6 pt-8 border-t border-primary-6 flex justify-center"
+                    : "hidden"
+                }`}
+              >
+                <Link href={"/signin"} onClick={() => setIsOpen(false)}>
+                  Sign In
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{
+                  y: "-50%",
+                  opacity: 0,
+                }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-50%", opacity: 0 }}
+                transition={{
+                  delay: 0.2,
+                  ease: "easeInOut",
+                }}
+                className={`${
+                  session.status === "authenticated"
+                    ? "mx-6 pt-8 border-t border-primary-6 flex justify-center"
+                    : "hidden"
+                }`}
+              >
+                <SignoutButton onClose={() => setIsOpen(false)} />
+              </motion.div>
             </div>
           </motion.div>
         )}
