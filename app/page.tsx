@@ -1,5 +1,5 @@
-import FeaturedArticles from "@/components/home/Featured";
 import Hero from "@/components/home/Hero";
+import FeaturedArticles from "@/components/home/featured/FeaturedArticles";
 
 const Home: React.FC = () => {
   return (
