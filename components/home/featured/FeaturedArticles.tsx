@@ -9,20 +9,16 @@ interface ArticlePreview {
 }
 
 async function fetchArticles(): Promise<ArticlePreview[]> {
-  console.log("Fetching articles...");
   const url = "http://localhost:3000/api/articles/featured";
-  console.log("Fetching from URL:", url);
 
   try {
     const response = await fetch(url);
-    console.log("Response status:", response.status);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log("Received data:", data);
 
     if (!data || !Array.isArray(data.articles)) {
       throw new Error("Invalid data received from API");

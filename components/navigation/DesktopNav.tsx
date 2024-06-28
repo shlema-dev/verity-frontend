@@ -11,10 +11,8 @@ const DesktopNav: React.FC = () => {
         <li>
           <Link
             href="/"
-            className={`text-gray-12 pb-2 ${
-              path === "/"
-                ? "border-b-2 border-primary-9"
-                : "hover:border-b-2 border-gray-12"
+            className={`pb-2 transition-all ease-in-out duration-300 pb-2 bg-gradient-to-r from-primary-11 to-primary-8 bg-[length:0%_1px] hover:bg-[length:100%_1px] bg-no-repeat bg-left-bottom ${
+              path === "/" ? "text-primary-11" : "text-gray-12"
             }`}
           >
             Home
@@ -23,10 +21,8 @@ const DesktopNav: React.FC = () => {
         <li>
           <Link
             href="/mission"
-            className={`text-gray-12 pb-2 ${
-              path === "/mission"
-                ? "border-b-2 border-primary-9"
-                : "hover:border-b-2 border-gray-12"
+            className={`pb-2 transition-all ease-in-out duration-300 pb-2 bg-gradient-to-r from-primary-11 to-primary-8 bg-[length:0%_1px] hover:bg-[length:100%_1px] bg-no-repeat bg-left-bottom ${
+              path === "/mission" ? "text-primary-11" : "text-gray-12"
             }`}
           >
             Mission
@@ -35,10 +31,8 @@ const DesktopNav: React.FC = () => {
         <li>
           <Link
             href="/electionbrief"
-            className={`text-gray-12 pb-2 ${
-              path === "/electionbrief"
-                ? "border-b-2 border-primary-9"
-                : "hover:border-b-2 border-gray-12"
+            className={`pb-2 transition-all ease-in-out duration-300 pb-2 bg-gradient-to-r from-primary-11 to-primary-8 bg-[length:0%_1px] hover:bg-[length:100%_1px] bg-no-repeat bg-left-bottom ${
+              path === "/electionbrief" ? "text-primary-11" : "text-gray-12"
             }`}
           >
             Election Brief
@@ -47,10 +41,8 @@ const DesktopNav: React.FC = () => {
         <li>
           <Link
             href="/contact"
-            className={`text-gray-12 pb-2 ${
-              path === "/contact"
-                ? "border-b-2 border-primary-9"
-                : "hover:border-b-2 border-gray-12"
+            className={`pb-2 transition-all ease-in-out duration-300 pb-2 bg-gradient-to-r from-primary-11 to-primary-8 bg-[length:0%_1px] hover:bg-[length:100%_1px] bg-no-repeat bg-left-bottom ${
+              path === "/contact" ? "text-primary-11" : "text-gray-12"
             }`}
           >
             Contact
