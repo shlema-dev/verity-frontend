@@ -1,25 +1,24 @@
-import SkeletonFeaturedCard from "./SkeletonFeatureCard";
+import React from "react";
+import SkeletonFeatureCard from "./SkeletonFeatureCard";
 
 const SkeletonFeaturedCarousel: React.FC = () => {
   return (
-    <div
-      className="w-full h-96 my-16 flex items-center justify-center"
-      style={{ maxWidth: "90%", margin: "0 auto" }}
-    >
-      {[0, 1, 2].map((index) => (
-        <div
-          key={index}
-          className={`max-w-[70%] lg:max-w-[100%] absolute ${
-            index === 0
-              ? "z-20 scale-100"
-              : index === 1
-              ? "z-10 scale-90 -translate-x-[15%] opacity-50"
-              : "z-10 scale-90 translate-x-[15%] opacity-50"
-          }`}
-        >
-          <SkeletonFeaturedCard />
+    <div className="w-full mx-auto">
+      <div className="overflow-hidden">
+        <div className="flex -ml-4 touch-pan-y">
+          {[...Array(3)].map((_, index) => (
+            <div className="flex-[0_0_70%] min-w-0 pl-4" key={index}>
+              <SkeletonFeatureCard />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+      <div className="hidden lg:block lg:flex lg:justify-center mt-7">
+        <div className="grid grid-cols-2 gap-6 items-center">
+          <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+          <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,6 @@ const PUBLIC_FILE = /\.(.*)$/;
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const session = await auth();
   let message = "";
 
   if (
@@ -21,23 +20,27 @@ export async function middleware(request: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  const unprotectedRoutes = ["/", "/mission", "/contact"];
+  const unprotectedRoutes = [
+    "/",
+    "/mission",
+    "/contact",
+    "/signin",
+    "/forgotpassword",
+    "/signup",
+  ];
+  if (unprotectedRoutes.includes(pathname)) {
+    return NextResponse.next();
+  }
 
-  if (
-    !unprotectedRoutes.includes(pathname) &&
-    !session?.user &&
-    pathname !== "/signin" &&
-    pathname !== "/forgotpassword" &&
-    pathname !== "/signup"
-  ) {
+  const session = await auth();
+
+  if (!session?.user) {
     const url = new URL("/signin", request.url);
-    if (isDynamicPathname(pathname)) {
-      message = `Sign In or Sign Up to view ${formatDynamicPathname(pathname)}`;
-    } else {
-      message = `Sign In or Sign Up to view ${formatPathname(pathname)}`;
-    }
+    const message = isDynamicPathname(pathname)
+      ? `Sign In or Sign Up to view ${formatDynamicPathname(pathname)}`
+      : `Sign In or Sign Up to view ${formatPathname(pathname)}`;
 
-    url.searchParams.set("message", `${message}`);
+    url.searchParams.set("message", message);
     return NextResponse.redirect(url);
   }
 

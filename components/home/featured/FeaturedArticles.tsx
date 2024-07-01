@@ -9,6 +9,9 @@ interface ArticlePreview {
 }
 
 async function fetchArticles(): Promise<ArticlePreview[]> {
+  setTimeout(() => {
+    5000;
+  });
   const url = "http://localhost:3000/api/articles/featured";
 
   try {
@@ -31,16 +34,16 @@ async function fetchArticles(): Promise<ArticlePreview[]> {
   }
 }
 
-const FeaturedArticles: React.FC = async () => {
+const ArticlesContainer = async () => {
   const articles = await fetchArticles();
+  return <FeaturedArticlesCarousel articles={articles} />;
+};
 
+const FeaturedArticles: React.FC = () => {
   return (
-    <section className="w-full mt-24 mb-24 flex flex-col">
-      <h2 className="mb-8 pt-8 lg:mb-24 text-4xl text-center text-gray-12 font-bold">
-        Featured Articles
-      </h2>
+    <section className="w-full mt-24 lg:mt-48 mb-24 flex flex-col">
       <Suspense fallback={<SkeletonFeaturedCarousel />}>
-        <FeaturedArticlesCarousel articles={articles} />
+        <ArticlesContainer />
       </Suspense>
     </section>
   );

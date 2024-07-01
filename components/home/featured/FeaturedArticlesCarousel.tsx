@@ -26,7 +26,10 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
 const FeaturedArticlesCarousel: React.FC<FeaturedArticlesCarouselProps> = ({
   articles,
 }) => {
-  const options: EmblaOptionsType = { loop: true };
+  const options: EmblaOptionsType = {
+    loop: true,
+    align: "center",
+  };
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
@@ -103,7 +106,7 @@ const FeaturedArticlesCarousel: React.FC<FeaturedArticlesCarouselProps> = ({
       .on("reInit", tweenOpacity)
       .on("scroll", tweenOpacity)
       .on("slideFocus", tweenOpacity);
-  }, [emblaApi, tweenOpacity]);
+  }, [emblaApi, tweenOpacity, setTweenFactor]);
 
   if (!articles || articles.length === 0) {
     return (
@@ -128,22 +131,24 @@ const FeaturedArticlesCarousel: React.FC<FeaturedArticlesCarouselProps> = ({
           ))}
         </div>
       </div>
-      <div className="hidden lg:block lg:flex lg:justify-center mt-7">
-        <div className="grid grid-cols-2 gap-6 items-center">
-          <button
-            className="w-12 h-12 flex items-center justify-center rounded-full text-gray-11 hover:text-primary-8 border border-gray-11 hover:border-primary-8"
-            onClick={() => scrollTo((selectedIndex - 1) % 3)}
-          >
-            &lt;
-          </button>
-          <button
-            className="w-12 h-12 flex items-center justify-center rounded-full text-gray-11 hover:text-primary-8 border border-gray-11 hover:border-primary-8"
-            onClick={() => scrollTo((selectedIndex + 1) % 3)}
-          >
-            &gt;
-          </button>
+      {articles.length > 0 && (
+        <div className="hidden lg:block lg:flex lg:justify-center mt-7">
+          <div className="grid grid-cols-2 gap-6 items-center">
+            <button
+              className="w-12 h-12 flex items-center justify-center rounded-full text-gray-11 hover:text-primary-8 border border-gray-11 hover:border-primary-8"
+              onClick={() => scrollTo((selectedIndex - 1) % 3)}
+            >
+              &lt;
+            </button>
+            <button
+              className="w-12 h-12 flex items-center justify-center rounded-full text-gray-11 hover:text-primary-8 border border-gray-11 hover:border-primary-8"
+              onClick={() => scrollTo((selectedIndex + 1) % 3)}
+            >
+              &gt;
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
