@@ -25,16 +25,6 @@ const Hero: React.FC = () => {
           fill
           objectFit="cover"
         />
-        {/* <video
-          className="w-full h-full object-cover rounded-xl priority"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/flag-frame.png"
-        >
-          <source src="/flag.mp4" type="video/mp4" />
-        </video> */}
       </div>
     </section>
   );

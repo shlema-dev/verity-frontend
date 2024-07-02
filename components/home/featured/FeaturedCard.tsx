@@ -11,7 +11,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
 }: FeaturedCardProps) => {
   return (
     <div
-      className="w-full h-full flex flex-col  rounded-xl overflow-hidden"
+      className="w-full h-full flex flex-col rounded-xl overflow-hidden"
       onClick={() => {}}
     >
       <div className="h-[32rem] overflow-hidden relative">
