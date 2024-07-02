@@ -57,21 +57,27 @@ const LatestArticles: React.FC = () => {
   const renderSkeletons = (count: number) => {
     return Array(count)
       .fill(null)
-      .map((_, index) => <SkeletonCard key={`skeleton-${index}`} />);
+      .map((_, index) => (
+        <div className="mx-0 lg:mx-4 my-4">
+          <SkeletonCard key={`skeleton-${index}`} />
+        </div>
+      ));
   };
 
   return (
     <div className="w-full flex flex-col gap-12 lg:gap-24">
-      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
+      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {articles.map((article, index) => (
-          <ArticleCard
-            key={index}
-            title={article.title}
-            hook={article.hook}
-            slug={article.slug}
-          />
+          <div className="mx-0 lg:mx-4 my-4">
+            <ArticleCard
+              key={index}
+              title={article.title}
+              hook={article.hook}
+              slug={article.slug}
+            />
+          </div>
         ))}
-        {loading && renderSkeletons(5)}
+        {loading && renderSkeletons(3)}
         {error && <p className="mt-4 text-center text-error-9">{error}</p>}
       </div>
       {!loading && articles.length > 0 && (

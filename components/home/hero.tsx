@@ -3,7 +3,7 @@ import GlobePNG from "@/public/globe.png";
 
 const Hero: React.FC = () => {
   return (
-    <section className="mt-8 flex flex-col xl:flex-row gap-6 justify-center lg:items-center">
+    <section className="mt-24 flex flex-col xl:flex-row gap-6 justify-center lg:items-center">
       <div className="w-full">
         <h1 className="mb-8 text-5xl text-gray-12 font-semibold text-center xl:text-start">
           <span className="text-primary-9">Insight Over Influence</span> News as
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           priority
           quality={100}
           fill
-          objectFit="cover"
+          className="object-cover"
         />
       </div>
     </section>
