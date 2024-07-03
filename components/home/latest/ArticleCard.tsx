@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface ArticleCardProps {
   title: string;
   hook: string;
@@ -12,7 +14,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   slug,
 }: ArticleCardProps) => {
   return (
-    <div
+    <Link
+      href={`/news/${slug}`}
       className="w-full h-[515px] flex flex-col rounded-xl border border-2 border-gray-6 hover:border-primary-7 overflow-hidden"
       onClick={() => {}}
     >
@@ -36,7 +39,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface FeaturedCardProps {
   title: string;
   hook: string;
@@ -10,9 +12,9 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
   slug,
 }: FeaturedCardProps) => {
   return (
-    <div
+    <Link
+      href={`/news/${slug}`}
       className="w-full h-full flex flex-col rounded-xl overflow-hidden"
-      onClick={() => {}}
     >
       <div className="h-[32rem] overflow-hidden relative">
         <div className="absolute inset-0 bg-gray-4">
@@ -34,7 +36,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
