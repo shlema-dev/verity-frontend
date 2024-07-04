@@ -19,6 +19,7 @@ export default function ThemeSwitcher() {
   if (resolvedTheme === "dark") {
     return (
       <button
+        aria-label="theme-switch"
         onClick={() => setTheme("light")}
         className="w-[34px] h-[34px] flex justify-center items-center xl:hover:bg-gray-3 rounded-lg"
       >
@@ -30,6 +31,7 @@ export default function ThemeSwitcher() {
   if (resolvedTheme === "light") {
     return (
       <button
+        aria-label="theme-switch"
         onClick={() => setTheme("dark")}
         className="w-[34px] h-[34px] flex justify-center items-center xl:hover:bg-gray-3 rounded-lg"
       >

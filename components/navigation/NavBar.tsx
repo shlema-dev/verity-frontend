@@ -8,7 +8,7 @@ import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import ThemeSwitcher from "../ui/ThemeSwitcher";
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, color, easeInOut, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import DesktopNav from "./DesktopNav";
 import SignoutButton from "../auth/SignoutButton";
 import { useSession } from "next-auth/react";
