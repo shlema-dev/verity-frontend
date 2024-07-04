@@ -1,7 +1,8 @@
 import { formatArticleContent } from "@/utils/articles/format-content";
 import { formatTakeaways } from "@/utils/articles/format-takeaways";
-import { Metadata, ResolvingMetadata } from "next";
-import { Suspense } from "react";
+import { Metadata } from "next";
+import Image from "next/image";
+import SampleImage from "@/public/sample_image.jpg";
 
 interface PageProps {
   params: {
@@ -53,7 +54,17 @@ const ArticleContent = async ({ slug }: { slug: string }) => {
       </h1>
 
       {/* Placeholder Image */}
-      <div className="w-full h-96 lg:h-[50lvh] mt-12 lg:mt-24 bg-gray-3 rounded-2xl"></div>
+      <div className="relative w-full h-96 lg:h-[50lvh] mt-12 lg:mt-24 bg-gray-3 rounded-2xl">
+        <Image
+          src={SampleImage}
+          alt="cover image"
+          priority
+          quality={100}
+          fill
+          objectFit="cover"
+          className="rounded-2xl"
+        />
+      </div>
 
       <div className="mt-12 lg:mt-24 lg:mx-[5vw] lg:text-lg text-start">
         {takeawaysContent}
