@@ -14,6 +14,7 @@ type Article = {
   title: string;
   takeaways: string;
   content: string;
+  img: string;
 };
 
 export async function generateMetadata({
@@ -54,17 +55,31 @@ const ArticleContent = async ({ slug }: { slug: string }) => {
       </h1>
 
       {/* Placeholder Image */}
-      <div className="relative w-full h-96 lg:h-[50lvh] mt-12 lg:mt-24 bg-gray-3 rounded-2xl">
-        <Image
-          src={SampleImage}
-          alt="cover image"
-          priority
-          quality={100}
-          fill
-          objectFit="cover"
-          className="rounded-2xl"
-        />
-      </div>
+      {article.img.includes("readverity") ? (
+        <div className="relative w-full h-96 lg:h-[50lvh] mt-12 lg:mt-24 bg-gray-3 rounded-2xl">
+          <Image
+            src={SampleImage}
+            alt="cover image"
+            priority
+            quality={100}
+            fill
+            objectFit="cover"
+            className="rounded-2xl"
+          />
+        </div>
+      ) : (
+        <div className="relative w-full h-96 lg:h-[50lvh] mt-12 lg:mt-24 bg-gray-3 rounded-2xl">
+          <Image
+            src={article.img}
+            alt="cover image"
+            priority
+            quality={100}
+            fill
+            objectFit="cover"
+            className="rounded-2xl"
+          />
+        </div>
+      )}
 
       <div className="mt-12 lg:mt-24 lg:mx-[5vw] lg:text-lg text-start">
         {takeawaysContent}

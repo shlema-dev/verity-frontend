@@ -68,9 +68,9 @@ const LatestArticles: React.FC = () => {
     <div className="w-full flex flex-col gap-12 lg:gap-24">
       <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {articles.map((article, index) => (
-          <div className="mx-0 lg:mx-4 my-4">
+          <div className="mx-0 lg:mx-4 my-4" key={index}>
             <ArticleCard
-              key={index}
+              key={article.slug}
               title={article.title}
               hook={article.hook}
               slug={article.slug}
@@ -80,7 +80,7 @@ const LatestArticles: React.FC = () => {
         {loading && renderSkeletons(3)}
         {error && <p className="mt-4 text-center text-error-9">{error}</p>}
       </div>
-      {!loading && articles.length > 0 && (
+      {!loading && articles.length > 0 && hasMore && (
         <button
           onClick={loadMore}
           className="w-full md:w-1/2 lg:w-1/4 xl:h-1/4 py-4 self-center bg-primary-3 hover:bg-primary-4 rounded-full border-2 border-primary-6 hover:border-primary-7 text-primary-12"

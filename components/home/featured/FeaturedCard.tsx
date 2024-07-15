@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import SampleImage from "@/public/sample_image.jpg";
+import SampleImage from "@/public/mammogram.jpeg";
 import { useState } from "react";
 
 interface FeaturedCardProps {

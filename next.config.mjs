@@ -1,4 +1,21 @@
+import { hostname } from "os";
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "www.readverity.com",
+        port: "",
+      },
+    ],
+  },
+};
 
 export default nextConfig;

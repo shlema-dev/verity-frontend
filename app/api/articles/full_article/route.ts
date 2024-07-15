@@ -4,6 +4,7 @@ type Article = {
   title: string;
   takeaways: string;
   content: string;
+  img: string;
 };
 
 export async function GET(request: NextRequest) {
@@ -25,8 +26,10 @@ export async function GET(request: NextRequest) {
       title: data.unbiased_title,
       takeaways: data.formatted_takeaways,
       content: data.formatted_web_content,
+      img: data.article_image,
     };
 
+    console.log(`Image URL: ${article.img}`);
     return NextResponse.json(article);
   } catch (error) {
     return NextResponse.json(
