@@ -58,7 +58,7 @@ const LatestArticles: React.FC = () => {
     return Array(count)
       .fill(null)
       .map((_, index) => (
-        <div className="mx-0 lg:mx-4 my-4">
+        <div className="mx-0 lg:mx-4 my-4" key={`skeleton-wrapper-${index}`}>
           <SkeletonCard key={`skeleton-${index}`} />
         </div>
       ));
@@ -68,9 +68,8 @@ const LatestArticles: React.FC = () => {
     <div className="w-full flex flex-col gap-12 lg:gap-24">
       <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
         {articles.map((article, index) => (
-          <div className="mx-0 lg:mx-4 my-4" key={index}>
+          <div className="mx-0 lg:mx-4 my-4" key={article.slug}>
             <ArticleCard
-              key={article.slug}
               title={article.title}
               hook={article.hook}
               slug={article.slug}

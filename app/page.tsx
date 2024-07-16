@@ -1,5 +1,5 @@
-import Hero from "@/components/home/Hero";
 import FeaturedArticles from "@/components/home/featured/FeaturedArticles";
+import Hero from "@/components/home/hero";
 import LatestArticlesSection from "@/components/home/latest/LatestArticlesSection";
 
 const Home: React.FC = () => {
