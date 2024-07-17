@@ -3,6 +3,7 @@ import DonaldTrump from "@/public/donald-trump.webp";
 import Kennedy from "@/public/kennedy.webp";
 import { Policy } from "@/types/types";
 import ProfileCard from "@/components/electionbrief/ProfileCard";
+import Reveal from "../ui/animation/reveal";
 
 const Candidates: React.FC = () => {
   const bidenReadMore =
@@ -62,39 +63,47 @@ const Candidates: React.FC = () => {
 
   return (
     <section>
-      <h2 className="mt-12 text-3xl font-medium text-gray-12 text-center">
-        Meet the Candidates
-      </h2>
+      <Reveal delay={0}>
+        <h2 className="mt-12 text-3xl font-medium text-gray-12 text-center">
+          Meet the Candidates
+        </h2>
+      </Reveal>
 
-      <ProfileCard
-        img={JoeBiden}
-        name="Joe Biden"
-        title="46th President"
-        party="Democratic Party"
-        policies={bidenPolicies}
-        background={bidenBackground}
-        link={bidenReadMore}
-      />
+      <Reveal delay={0}>
+        <ProfileCard
+          img={JoeBiden}
+          name="Joe Biden"
+          title="46th President"
+          party="Democratic Party"
+          policies={bidenPolicies}
+          background={bidenBackground}
+          link={bidenReadMore}
+        />
+      </Reveal>
 
-      <ProfileCard
-        img={DonaldTrump}
-        name="Donald Trump"
-        title="45th President"
-        party="Republican Party"
-        policies={trumpPolicies}
-        background={trumpBackground}
-        link={trumpReadMore}
-      />
+      <Reveal delay={0}>
+        <ProfileCard
+          img={DonaldTrump}
+          name="Donald Trump"
+          title="45th President"
+          party="Republican Party"
+          policies={trumpPolicies}
+          background={trumpBackground}
+          link={trumpReadMore}
+        />
+      </Reveal>
 
-      <ProfileCard
-        img={Kennedy}
-        name="Robert F. Kennedy"
-        title=""
-        party="Independent Party"
-        policies={kennedyPolicies}
-        background={kennedyBackground}
-        link={kennedyReadMore}
-      />
+      <Reveal delay={0}>
+        <ProfileCard
+          img={Kennedy}
+          name="Robert F. Kennedy"
+          title=""
+          party="Independent Party"
+          policies={kennedyPolicies}
+          background={kennedyBackground}
+          link={kennedyReadMore}
+        />
+      </Reveal>
 
       <div className="mt-24 border-b border-primary-6" />
     </section>

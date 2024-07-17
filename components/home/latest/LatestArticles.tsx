@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import SkeletonCard from "./SkeletonCard";
+import gsap from "gsap";
+import ListReveal from "@/components/ui/animation/ListReveal";
+import Reveal from "@/components/ui/animation/reveal";
 
 interface ArticlePreview {
   title: string;
@@ -66,19 +69,22 @@ const LatestArticles: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col gap-12 lg:gap-24">
-      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-        {articles.map((article, index) => (
-          <div className="mx-0 lg:mx-4 my-4" key={article.slug}>
-            <ArticleCard
-              title={article.title}
-              hook={article.hook}
-              slug={article.slug}
-            />
-          </div>
-        ))}
-        {loading && renderSkeletons(3)}
-        {error && <p className="mt-4 text-center text-error-9">{error}</p>}
-      </div>
+      <ListReveal stagger={0.5}>
+        <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+          {articles.map((article, index) => (
+            <div className="mx-0 lg:mx-4 my-4" key={article.slug}>
+              <ArticleCard
+                title={article.title}
+                hook={article.hook}
+                slug={article.slug}
+              />
+            </div>
+          ))}
+          {loading && renderSkeletons(3)}
+          {error && <p className="mt-4 text-center text-error-9">{error}</p>}
+        </div>
+      </ListReveal>
+
       {!loading && articles.length > 0 && hasMore && (
         <button
           onClick={loadMore}
