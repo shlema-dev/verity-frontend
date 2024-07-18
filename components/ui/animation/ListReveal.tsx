@@ -2,25 +2,20 @@
 import { ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
 
-interface ListRevealProps {
+interface RevealProps {
   children: ReactNode;
   delay?: number;
-  stagger?: number;
 }
 
-const ListReveal: React.FC<ListRevealProps> = ({
-  children,
-  delay = 0,
-  stagger = 0.15,
-}: ListRevealProps) => {
-  const listRef = useRef<HTMLDivElement>(null);
+const ListReveal: React.FC<RevealProps> = ({ children, delay = 0 }) => {
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const listItems = listRef.current?.children;
-    if (!listItems) return;
+    const element = elementRef.current;
+    if (!element) return;
 
     gsap.fromTo(
-      listItems,
+      element,
       {
         y: 50,
         opacity: 0,
@@ -28,16 +23,14 @@ const ListReveal: React.FC<ListRevealProps> = ({
       {
         y: 0,
         opacity: 1,
-        duration: 1,
-        grid: "auto",
-        stagger: stagger,
+        duration: 0.8,
         delay: delay,
         ease: "power3.out",
       }
     );
-  }, [delay, stagger]);
+  }, [delay]);
 
-  return <div ref={listRef}>{children}</div>;
+  return <div ref={elementRef}>{children}</div>;
 };
 
 export default ListReveal;

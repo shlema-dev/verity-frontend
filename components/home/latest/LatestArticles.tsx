@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import SkeletonCard from "./SkeletonCard";
-import gsap from "gsap";
-import ListReveal from "@/components/ui/animation/ListReveal";
 import Reveal from "@/components/ui/animation/reveal";
+import ListReveal from "@/components/ui/animation/ListReveal";
 
 interface ArticlePreview {
   title: string;
@@ -17,8 +16,9 @@ const LatestArticles: React.FC = () => {
   const [articles, setArticles] = useState<ArticlePreview[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [baseIndex, setBaseIndex] = useState(0);
 
   const fetchArticles = async (pageNum: number) => {
     setLoading(true);
@@ -50,6 +50,7 @@ const LatestArticles: React.FC = () => {
     if (newArticles.length > 0) {
       setArticles((prevArticles) => [...prevArticles, ...newArticles]);
       setPage(nextPage);
+      setBaseIndex((prevBaseIndex) => prevBaseIndex + newArticles.length);
 
       if (newArticles.length < 10) {
         setHasMore(false);
@@ -61,29 +62,35 @@ const LatestArticles: React.FC = () => {
     return Array(count)
       .fill(null)
       .map((_, index) => (
-        <div className="mx-0 lg:mx-4 my-4" key={`skeleton-wrapper-${index}`}>
-          <SkeletonCard key={`skeleton-${index}`} />
+        <div className="mx-0 lg:mx-4 my-4" key={`skeleton-${index}`}>
+          <SkeletonCard />
         </div>
       ));
   };
 
+  const getAnimationDelay = (index: number) => {
+    const relativeIndex = index % 10; // Reset every 10 items
+    return relativeIndex * 0.1; // Slightly faster animation
+  };
+
   return (
     <div className="w-full flex flex-col gap-12 lg:gap-24">
-      <ListReveal stagger={0.5}>
-        <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-          {articles.map((article, index) => (
-            <div className="mx-0 lg:mx-4 my-4" key={article.slug}>
+      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+        {articles.map((article, index) => (
+          <ListReveal key={article.slug} delay={getAnimationDelay(index)}>
+            <div className="mx-0 lg:mx-4 my-4">
               <ArticleCard
                 title={article.title}
                 hook={article.hook}
                 slug={article.slug}
               />
             </div>
-          ))}
-          {loading && renderSkeletons(3)}
-          {error && <p className="mt-4 text-center text-error-9">{error}</p>}
-        </div>
-      </ListReveal>
+          </ListReveal>
+        ))}
+        {loading && renderSkeletons(3)}
+      </div>
+
+      {error && <p className="mt-4 text-center text-error-9">{error}</p>}
 
       {!loading && articles.length > 0 && hasMore && (
         <button
