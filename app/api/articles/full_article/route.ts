@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 type Article = {
   title: string;
+  hook: string;
   takeaways: string;
   content: string;
   img: string;
+  date: string;
 };
 
 export async function GET(request: NextRequest) {
@@ -24,9 +26,11 @@ export async function GET(request: NextRequest) {
     const data = await response.json();
     const article: Article = {
       title: data.unbiased_title,
+      hook: data.article_hook ?? "",
       takeaways: data.formatted_takeaways,
       content: data.formatted_web_content,
       img: data.article_image,
+      date: data.date,
     };
 
     console.log(`Image URL: ${article.img}`);

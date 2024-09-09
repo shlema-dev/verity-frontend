@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import SkeletonCard from "./SkeletonCard";
-import Reveal from "@/components/ui/animation/reveal";
 import ListReveal from "@/components/ui/animation/ListReveal";
 
 interface ArticlePreview {
@@ -70,7 +69,7 @@ const LatestArticles: React.FC = () => {
 
   const getAnimationDelay = (index: number) => {
     const relativeIndex = index % 10; // Reset every 10 items
-    return relativeIndex * 0.1; // Slightly faster animation
+    return relativeIndex * 0.1;
   };
 
   return (

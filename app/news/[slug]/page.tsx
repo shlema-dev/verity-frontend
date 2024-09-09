@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import SampleImage from "@/public/sample_image.jpg";
 import Reveal from "@/components/ui/animation/reveal";
+import generateJSONld from "@/utils/generate-jsonld";
 
 interface PageProps {
   params: {
@@ -13,9 +14,11 @@ interface PageProps {
 
 type Article = {
   title: string;
+  hook: string;
   takeaways: string;
   content: string;
   img: string;
+  date: string;
 };
 
 export async function generateMetadata({
@@ -29,6 +32,16 @@ export async function generateMetadata({
 
   return {
     title: article.title,
+    authors: [{ name: "Verity" }],
+    description: article.hook,
+    openGraph: {
+      title: article.title,
+      description: article.hook,
+      type: "article",
+      url: `http://localhost:3000/news/${slug}`,
+      publishedTime: article.date,
+      authors: ["Verity"],
+    },
   };
 }
 
@@ -48,6 +61,12 @@ const ArticleContent = async ({ slug }: { slug: string }) => {
   const article = await getArticle(slug);
   const takeawaysContent = formatTakeaways(article.takeaways);
   const articleContent = formatArticleContent(article.content);
+  const jsonLD = generateJSONld({
+    title: article.title,
+    description: article.hook,
+    slug: slug,
+    date: article.date,
+  });
 
   return (
     <article className="max-w-7xl mt-12 lg:mt-24 mb-12">
@@ -99,6 +118,11 @@ const ArticleContent = async ({ slug }: { slug: string }) => {
           {articleContent}
         </div>
       </Reveal>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLD) }}
+      />
     </article>
   );
 };
